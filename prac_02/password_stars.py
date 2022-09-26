@@ -14,11 +14,12 @@ def main():
             print('Password needs to be longer')
         else:
             i = 1
-    return password
+            print_password(password)
 
 
 def print_password(password):
     for i in range(0, len(password)):
         print('*', end=' ')
+
 
 main()
