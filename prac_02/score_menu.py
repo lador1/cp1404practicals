@@ -16,8 +16,8 @@ def main():
             score = get_score()
         elif choice == "R":
             print(score)
-        elif choice == "S":
-            stars = print_stars()
+        elif choice == "*":
+            print_stars(score)
         else:
             print("Invalid choice")
         print("Menu: ")
@@ -25,8 +25,8 @@ def main():
     print("farewell")
 
 
-def get_score(score):
-    score = input("Score: ")
+def get_score():
+    score = int(input("Score: "))
     if score > 100:
         message = 'Invalid score'
     elif score >= 90:
@@ -37,7 +37,8 @@ def get_score(score):
         message = "Bad"
     else:
         message = "Invalid score"
-    return message
+    print(message)
+    return score
 
 
 def print_stars(score):
