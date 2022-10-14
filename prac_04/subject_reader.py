@@ -10,7 +10,10 @@ def main():
     data = get_data()
     print(data)
     print_nicely(data)
-
+    subject_to_data = convert_data(data)
+    print(subject_to_data)
+    subject = input("What subject code: ")
+    print(f"{subject_to_data[subject][0]} teachs {subject}")
 
 def get_data():
     """Read data from file formatted like: subject,lecturer,number of students."""
@@ -28,6 +31,13 @@ def get_data():
         print("----------")
     input_file.close()
     return data
+
+
+def convert_data(data):
+    subject_to_data = {}
+    for subject_data in data:
+        subject_to_data[subject_data[0]] = subject_data[1:]
+    return subject_to_data
 
 
 def print_nicely(data):

@@ -1,8 +1,9 @@
 #1
+""" Code that asks for user input and prints it to a new file 'name.txt' """
 users_name = input('What is your name?: ')
 out_file = open("name.txt", 'w')
 print(users_name, file=out_file)
-# out_file.close
+out_file.close
 
 #2
 in_file = open('name.txt', 'r')
