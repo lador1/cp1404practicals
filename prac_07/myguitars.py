@@ -2,8 +2,8 @@
 Time started 2.45pm
 Time finsihed UNFINISHED
 """
-
-from prac_06.guitar import Guitar
+import csv
+from prac_06.guitar import Guitar, GuitarOutFile
 
 FILENAME = 'guitars.csv'
 
@@ -23,6 +23,7 @@ def load_guitars(FILENAME):
             guitars.append(guitar)
     return guitars
 
+
 def print_guitars_list(guitars):
     """Print the guitars in the csv file"""
     print("Guitars loaded from file")
@@ -34,16 +35,23 @@ def print_guitars_list(guitars):
 def update_guitars_list(guitars):
     """Allow user to enter guitar info and update to list"""
     name = input("Add a new guitar: ")
-    while name != "":
+    if name != "":
         year = int(input("Year: "))
         cost = float(input("Cost: "))
-        print(f"{name} ({year}) : ${cost:.2f} added!")
         new_guitar = Guitar(name, year, cost)  # Needed to make new guitar because append is only for 2 things
         guitars.append(new_guitar)
-        name = input("Name: ")
-        print("\n... snip ...\n")
+        print(f"\n {name} ({year}) : ${cost:.2f} added! \n")
         print_guitars_list(guitars)
-
-
-
-main()
+#     else:
+#         save_updated_guitar_list(FILENAME, guitars)
+#
+#
+# def save_updated_guitar_list(FILENAME, guitars):
+#     """save added guitars to csv file"""
+#     with open(FILENAME, "w", encoding="UTF-8") as out_file:
+#         for guitars in out_file:
+#             out_file.writelines(guitars)
+#         print(f"{len(guitars)} movies saved to {FILENAME}")
+#
+#
+# main()
