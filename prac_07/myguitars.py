@@ -3,8 +3,7 @@ Time started 2.45pm
 Time finsihed UNFINISHED
 """
 import csv
-from prac_06.guitar import Guitar, GuitarOutFile
-
+from prac_06.guitar import Guitar
 FILENAME = 'guitars.csv'
 
 
@@ -42,16 +41,15 @@ def update_guitars_list(guitars):
         guitars.append(new_guitar)
         print(f"\n {name} ({year}) : ${cost:.2f} added! \n")
         print_guitars_list(guitars)
-#     else:
-#         save_updated_guitar_list(FILENAME, guitars)
-#
-#
-# def save_updated_guitar_list(FILENAME, guitars):
-#     """save added guitars to csv file"""
-#     with open(FILENAME, "w", encoding="UTF-8") as out_file:
-#         for guitars in out_file:
-#             out_file.writelines(guitars)
-#         print(f"{len(guitars)} movies saved to {FILENAME}")
-#
-#
-# main()
+    else:
+        save_updated_guitar_list(FILENAME, guitars)
+
+
+def save_updated_guitar_list(FILENAME, guitars):
+    """save added guitars to csv file"""
+    with open(FILENAME, "w", encoding="UTF-8") as out_file:
+        for guitar in guitars:
+            print(f"{guitar.name},{guitar.year},{guitar.cost}", file=out_file, end="\n")
+
+
+main()
