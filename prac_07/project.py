@@ -24,9 +24,10 @@ def main():
         # elif choice == "S":
         #     save_projects(projects, FILENAME)
         elif choice == "D":
-            display_projects(project, projects)
-            # elif choice == "F":
-            #
+            print_incomplete_projects(projects)
+            print_completed_projects(projects)
+        # elif choice == "F":
+        #
         elif choice == "A":
             add_new_project(projects)
         elif choice == "U":
@@ -50,15 +51,18 @@ def load_projects():
     return project, projects
 
 
-def display_projects(project, projects):
-    projects.sort(key=attrgetter('priority'))  # Sort in ascending order of year
+def print_completed_projects(projects):
+    print("Completed projects:")
+    for project in projects:
+        if project.is_complete():
+            print(project)
+
+
+def print_incomplete_projects(projects):
     print("Incomplete projects:")
     for project in projects:
-        print(project)
-        if project.is_complete():
-            print("Completed projects:")
+        if not project.is_complete():
             print(project)
-    return project
 
 
 def update_projects(project, projects):
@@ -88,11 +92,3 @@ def add_new_project(projects):
     percent_complete = int(input("Percent complete: "))
     new_project = Project(name, start_date, priority, cost_estimate, percent_complete)
     projects.append(new_project)
-
-
-
-
-
-
-
-
