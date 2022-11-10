@@ -14,15 +14,14 @@ FILENAME = 'projects.txt'
 
 
 def main():
-    project, projects = load_projects()
-    # FILENAME = input("Filename:  ")
+    project,projects = load_projects("projects.txt")
     print(MENU)
     choice = input(">>> ").upper()
     while choice != "Q":
         if choice == "L":
-            project, projects = load_projects()
-        # elif choice == "S":
-        #     save_projects(projects, FILENAME)
+            project, projects = load_projects(projects)
+        elif choice == "S":
+            save_projects(projects)
         elif choice == "D":
             print_incomplete_projects(projects)
             print_completed_projects(projects)
@@ -39,7 +38,7 @@ def main():
     print("Thank you for using custom-built project management software.")
 
 
-def load_projects():
+def load_projects(project):
     projects = []
     with open(FILENAME, "r") as in_file:
         in_file.readline()
@@ -52,6 +51,7 @@ def load_projects():
 
 
 def print_incomplete_projects(projects):
+    projects.sort(key=attrgetter('priority'))  # Sort in ascending order of year
     print("Incomplete projects:")
     for project in projects:
         if not project.is_complete():
@@ -59,6 +59,7 @@ def print_incomplete_projects(projects):
 
 
 def print_completed_projects(projects):
+    projects.sort(key=attrgetter('priority'))  # Sort in ascending order of year
     print("Completed projects:")
     for project in projects:
         if project.is_complete():
@@ -88,9 +89,9 @@ def add_new_project(projects):
     name = input("Name: ")
     start_date = input("Start date (dd/mm/yy): ")
     priority = int(input("Priority: "))
-    cost_estimate = float(input("Cost Estimate: $"))
+    cost = float(input("Cost Estimate: $"))
     percent_complete = int(input("Percent complete: "))
-    new_project = Project(name, start_date, priority, cost_estimate, percent_complete)
+    new_project = Project(name, start_date, priority, cost, percent_complete)
     projects.append(new_project)
 
 
@@ -101,5 +102,11 @@ def filter_date(projects):
         if project.start_date > chosen_date:
             print(project)
 
+
+def save_projects(projects):
+    out_file = open(FILENAME, "w")
+    for project in projects:
+        print(f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost}\t"
+              f"{project.completion_percentage}", file=out_file, end="\n")
 
 main()
