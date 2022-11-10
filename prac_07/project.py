@@ -14,7 +14,7 @@ FILENAME = 'projects.txt'
 
 
 def main():
-    # project, projects = load_projects()
+    project, projects = load_projects()
     # FILENAME = input("Filename:  ")
     print(MENU)
     choice = input(">>> ").upper()
@@ -22,13 +22,15 @@ def main():
         if choice == "L":
             project, projects = load_projects()
         # elif choice == "S":
+        #     save_projects(projects, FILENAME)
         elif choice == "D":
             display_projects(project, projects)
-        # elif choice == "F":
-        #
-        # elif choice == "A":
-        #
-        # elif choice == "U":
+            # elif choice == "F":
+            #
+        elif choice == "A":
+            add_new_project(projects)
+        elif choice == "U":
+            update_projects(project, projects)
         else:
             print("Invalid menu choice")
         print(MENU)
@@ -56,6 +58,41 @@ def display_projects(project, projects):
         if project.is_complete():
             print("Completed projects:")
             print(project)
+    return project
 
-#Ask lindsay for help on Friday
-main()
+
+def update_projects(project, projects):
+    index = 0
+    for project in projects:
+        print(index, project)
+        index += 1
+    is_valid_input = False
+    while not is_valid_input:
+        choice = int(input("Project choice: "))
+        if choice < 1:
+            print("Number must be >=1")
+        else:
+            print(projects[choice])
+            is_valid_input = True
+        new_percentage = int(input("New Percentage: "))
+        projects[choice].completion = new_completion
+    return projects, project
+
+
+def add_new_project(projects):
+    print("Let's add a new project")
+    name = input("Name: ")
+    start_date = input("Start date (dd/mm/yy): ")
+    priority = int(input("Priority: "))
+    cost_estimate = float(input("Cost Estimate: $"))
+    percent_complete = int(input("Percent complete: "))
+    new_project = Project(name, start_date, priority, cost_estimate, percent_complete)
+    projects.append(new_project)
+
+
+
+
+
+
+
+

@@ -4,6 +4,8 @@ Session 1; start time: 2pm
 """
 import datetime
 
+from tomlkit import items
+
 COMPLETION_PERCENTAGE = '100'
 
 
@@ -23,4 +25,7 @@ class Project:
         return self.completion_percentage == '100'
 
     def __repr__(self):
+        return f"{self.name}, start: {self.start_date.strftime('%d/%m/%Y')}priority {self.priority}, estimate: ${self.cost}, completion: {self.completion_percentage}%"
+
+    def __getitem__(self, item): #used for updating projects
         return f"{self.name}, start: {self.start_date.strftime('%d/%m/%Y')}priority {self.priority}, estimate: ${self.cost}, completion: {self.completion_percentage}%"
