@@ -1,6 +1,6 @@
 from prac_07.project_management import Project
 from operator import attrgetter
-import datetime
+from datetime import date, datetime
 
 MENU = """(L)oad projects
 (S)ave projects
@@ -26,8 +26,8 @@ def main():
         elif choice == "D":
             print_incomplete_projects(projects)
             print_completed_projects(projects)
-        # elif choice == "F":
-        #
+        elif choice == "F":
+            filter_date(projects)
         elif choice == "A":
             add_new_project(projects)
         elif choice == "U":
@@ -51,17 +51,17 @@ def load_projects():
     return project, projects
 
 
-def print_completed_projects(projects):
-    print("Completed projects:")
-    for project in projects:
-        if project.is_complete():
-            print(project)
-
-
 def print_incomplete_projects(projects):
     print("Incomplete projects:")
     for project in projects:
         if not project.is_complete():
+            print(project)
+
+
+def print_completed_projects(projects):
+    print("Completed projects:")
+    for project in projects:
+        if project.is_complete():
             print(project)
 
 
@@ -79,7 +79,7 @@ def update_projects(project, projects):
             print(projects[choice])
             is_valid_input = True
         new_percentage = int(input("New Percentage: "))
-        projects[choice].completion = new_completion
+        projects[choice].is_complete = new_percentage
     return projects, project
 
 
@@ -92,3 +92,14 @@ def add_new_project(projects):
     percent_complete = int(input("Percent complete: "))
     new_project = Project(name, start_date, priority, cost_estimate, percent_complete)
     projects.append(new_project)
+
+
+def filter_date(projects):
+    chosen_date = input("Show projects that start after date (dd/mm/yy): ")
+    chosen_date = datetime.strptime(chosen_date, "%d/%m/%Y").date()
+    for project in projects:
+        if project.start_date > chosen_date:
+            print(project)
+
+
+main()

@@ -4,7 +4,6 @@ Session 1; start time: 2pm
 """
 import datetime
 
-from tomlkit import items
 
 COMPLETION_PERCENTAGE = '100'
 
@@ -15,17 +14,18 @@ class Project:
         self.priority = priority
         self.cost = cost
         self.completion_percentage = completion_percentage
-        self.start_date = datetime.datetime.strptime(start_date, "%d/%m/%Y")
+        self.start_date = datetime.datetime.strptime(start_date, "%d/%m/%Y").date()
 
     def __str__(self):
         return f"{self.name}, start: {self.start_date.strftime('%d/%m/%Y')}, priority {self.priority}, estimate: ${self.cost}, completion: {self.completion_percentage}%"
 
     def is_complete(self):
         """determine if project is complete"""
-        return self.completion_percentage == '100'
+        return self.completion_percentage == 100
 
     def __repr__(self):
         return f"{self.name}, start: {self.start_date.strftime('%d/%m/%Y')}priority {self.priority}, estimate: ${self.cost}, completion: {self.completion_percentage}%"
 
     def __getitem__(self, item): #used for updating projects
         return f"{self.name}, start: {self.start_date.strftime('%d/%m/%Y')}priority {self.priority}, estimate: ${self.cost}, completion: {self.completion_percentage}%"
+
