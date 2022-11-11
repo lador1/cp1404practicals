@@ -2,9 +2,9 @@
 Score Menu
 Luca Adornetto
 """
-MENU = """S - Enter score between 0-100
-R - Print Result
-* - Print score in stars
+MENU = """D - Display Movies
+A - Add new movie
+W - Watch a movie
 Q - Quit"""
 
 
