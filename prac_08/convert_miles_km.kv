@@ -5,23 +5,30 @@ BoxLayout: #red
         orientation: 'horizontal'
         TextInput:
             id: input_miles
-            text: '7'
+            text: '5.0'
             font_size: 48
+
 
         BoxLayout: #Blue
             orientation: 'vertical'
             size_hint_x: 0.25
             Button:
+                background_color: 'green'
                 text: 'Up'
+                on_press: app.handle_increment(1)
             Button:
+                background_color: 'red'
                 text: 'Down'
+                on_press: app.handle_increment(-1)
 
     BoxLayout: #Green
         orientation: 'vertical'
         Button:
-            text: 'Convert m to km'
+            background_color: 'lightblue'
+            text: 'Convert miles to kilometres'
+            on_press: app.handle_calculate() #On press run km to miles calculation
         Label:
-            text: '54.717'
+            id: output_kilometres
             color: 'yellow'
 
 
