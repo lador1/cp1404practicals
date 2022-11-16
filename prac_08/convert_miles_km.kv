@@ -7,7 +7,7 @@ BoxLayout: #red
             id: input_miles
             text: '5.0'
             font_size: 48
-
+            on_text: app.handle_calculate() # moment text is passed it will output, eliminating need for button
 
         BoxLayout: #Blue
             orientation: 'vertical'
@@ -23,10 +23,10 @@ BoxLayout: #red
 
     BoxLayout: #Green
         orientation: 'vertical'
-        Button:
-            background_color: 'lightblue'
-            text: 'Convert miles to kilometres'
-            on_press: app.handle_calculate() #On press run km to miles calculation
+#        Button:
+#            background_color: 'lightblue'
+#            text: 'Convert miles to kilometres'
+#            on_press: app.handle_calculate() #On press run km to miles calculation
         Label:
             id: output_kilometres
             color: 'yellow'
