@@ -7,9 +7,9 @@ from prac_09.car import Car
 
 class Taxi(Car):
     """Specialised version of a Car that includes fare costs."""
-    price_per_km = 1.23 # Set class variable for a set price, can be referenced in string.
+    price_per_km = 1.23  # Set class variable for a set price, can be referenced in string.
 
-    def __init__(self, name, fuel,):
+    def __init__(self, name, fuel, ):
         """Initialise a Taxi instance, based on parent class Car."""
         super().__init__(name, fuel)
         self.current_fare_distance = 0
@@ -21,7 +21,7 @@ class Taxi(Car):
 
     def get_fare(self):
         """Return the price for the taxi trip."""
-        return self.price_per_km * self.current_fare_distance
+        return round(self.price_per_km * self.current_fare_distance, 1)
 
     def start_fare(self):
         """Begin a new fare."""
