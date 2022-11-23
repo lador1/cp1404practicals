@@ -14,6 +14,3 @@ class Band(Musician):
 
     def play(self):
         return super().play()
-
-
-
