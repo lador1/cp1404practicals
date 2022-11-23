@@ -1,0 +1,37 @@
+BoxLayout: #red
+    orientation: 'vertical'
+
+    BoxLayout: #Pink
+        orientation: 'horizontal'
+        TextInput:
+            id: input_miles
+            text: '5.0'
+            font_size: 48
+            on_text: app.handle_calculate() # moment text is passed it will output, eliminating need for button
+
+        BoxLayout: #Blue
+            orientation: 'vertical'
+            size_hint_x: 0.25
+            Button:
+                background_color: 'green'
+                text: 'Up'
+                on_press: app.handle_increment(1)
+            Button:
+                background_color: 'red'
+                text: 'Down'
+                on_press: app.handle_increment(-1)
+
+    BoxLayout: #Green
+        orientation: 'vertical'
+#        Button:
+#            background_color: 'lightblue'
+#            text: 'Convert miles to kilometres'
+#            on_press: app.handle_calculate() #On press run km to miles calculation
+        Label:
+            id: output_kilometres
+            color: 'yellow'
+
+
+
+
+
