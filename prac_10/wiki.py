@@ -15,7 +15,5 @@ while search_input != "":
         print("Does not match any pages")
 
 print("Thanks cya")
-# # printing the result
-# print(result)
 
 
