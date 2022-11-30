@@ -46,8 +46,8 @@ run_tests()
 def create_sentence(words):
     """
     Create a sentence out of words.
-    >>> create_sentence('my dog is cool')
-    'My dog is cool.'
+    >>> create_sentence('I am hungry')
+    'I am hungry.'
     """
 
     sentence = words.capitalize()
